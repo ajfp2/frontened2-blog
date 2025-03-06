@@ -1,0 +1,192 @@
+<div style="margin-left: auto; margin-right: auto">
+    <p id="registerFeedback"></p>
+</div>
+<div>
+    <h1>Register</h1>
+    <!-- TODO 18 -->
+    <form [formGroup]="registerForm" (submit)="register();">        
+        <div>
+            <label for="name">Nombre:</label>
+            <input id="name" name="name" type="text" [formControl]="name" />
+            <div *ngIf="name.errors && isValidForm != null && !isValidForm" [ngClass]="'error'">
+                <div *ngIf="name.errors.required">El nombre es obligatorio.</div>
+                <div *ngIf="name.errors.minlength">
+                    El nombre debe tener al menos 5 caracteres.
+                </div>
+                <div *ngIf="name.errors.maxlength">
+                    El nombre debe tener menos 25 caracteres.
+                </div>
+            </div>
+        </div>
+        <div>
+            <label for="surname_1">Apellido 1:</label>
+            <input id="surname_1" name="surname_1" type="text" [formControl]="surname_1" />
+            <div *ngIf="surname_1.errors && isValidForm != null && !isValidForm" [ngClass]="'error'">
+                <div *ngIf="surname_1.errors.required">El Apellido_1 es obligatorio.</div>
+                <div *ngIf="surname_1.errors.minlength">
+                    El Apellido_1 debe tener al menos 5 caracteres.
+                </div>
+                <div *ngIf="surname_1.errors.maxlength">
+                    El Apellido_1 debe tener menos 25 caracteres.
+                </div>
+            </div>
+        </div>
+        <div>
+            <label for="surname_2">Apellido 2:</label>
+            <input id="surname_2" name="surname_2" type="text" [formControl]="surname_2" />
+            <div *ngIf="surname_2.errors && isValidForm != null && !isValidForm" [ngClass]="'error'">
+                <div *ngIf="surname_2.errors.required">El Apellido_2 es obligatorio.</div>
+                <div *ngIf="surname_2.errors.minlength">
+                    El Apellido_2 debe tener al menos 5 caracteres.
+                </div>
+                <div *ngIf="surname_2.errors.maxlength">
+                    El Apellido_2 debe tener menos 25 caracteres.
+                </div>
+            </div>
+        </div>
+        <div>
+            <label for="alias">Alias:</label>
+            <input id="alias" name="alias" type="text" [formControl]="alias" />
+            <div *ngIf="alias.errors && isValidForm != null && !isValidForm" [ngClass]="'error'">
+                <div *ngIf="alias.errors.required">El Apellido_2 es obligatorio.</div>
+                <div *ngIf="alias.errors.minlength">
+                    El alias debe tener al menos 5 caracteres.
+                </div>
+                <div *ngIf="alias.errors.maxlength">
+                    El alias debe tener menos 25 caracteres.
+                </div>
+            </div>
+        </div>
+        <div>
+            <label for="birth_date">Cumpleaños:</label>
+            <input type="date" [formControl]="birth_date" />
+            <div *ngIf="birth_date.errors && isValidForm != null && !isValidForm" [ngClass]="'error'">
+                <div *ngIf="birth_date.errors.required">La fecha de nacimiento es obligatoria</div>
+            </div>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input id="email" name="email" type="email" [formControl]="email" />
+            <div *ngIf="email.errors && isValidForm != null && !isValidForm" [ngClass]="'error'">
+                <div *ngIf="email.errors.required">Email es obligatorio</div>
+                <div *ngIf="email.errors.pattern">Email no tiene un formato valido.</div>
+                <!-- <span *ngIf="email.errors.invalidKeyWord">Email info@uoc.edu is reservated for the system admin.</span> -->
+            </div>
+        </div>
+        <div>
+            <label for="pwd">Password:</label>
+            <input id="pwd" name="pwd" type="password" [formControl]="password" />
+            <div *ngIf="password.errors && isValidForm != null && !isValidForm" [ngClass]="'error'">
+                <div *ngIf="password.errors.required">Password es obligatorio</div>
+                <div *ngIf="password.errors.minlength">Password debe tener al menos 8 caracteres.</div>
+                <div *ngIf="password.errors.minlength">Password debe tener como máximo 16 caracteres.</div>
+            </div>
+        </div>
+        <br />
+        <button type="submit">Registrarse</button>
+    </form>
+</div>
+<!--  
+@if(email.errors){
+    <div style="color: red">
+        @if(email.touched || email.dirty){
+            @if(email.errors?.['required']) {
+                <span>Email es obligatorio</span>
+            }
+            @if(email.errors?.['email']) {
+                <span>Email no Valido</span>
+            }
+            @if(email.errors?.['invalidKeyWord']) {
+                <span>Email info invalido</span>
+            }
+        }
+    </div>
+}
+
+@if(password.errors){     
+    <div style="color: red">
+        @if(password.touched || password.dirty){
+            @if(password.errors?.['required']) {
+                <span>Password es obligatorio</span>
+            }
+            @if(password.errors?.['minlength']) {
+                <span>Password es debe tener al menos 8.</span>
+            }
+        }
+    </div>
+}
+
+@if(name.errors){
+    <div style="color: red">
+        @if(name.touched || name.dirty){
+            @if(name.errors?.['required']) {
+                <span>Nombre es obligatorio</span>
+            }
+            @if(name.errors?.['minlength']) {
+                <span>Name es debe tener al menos 5.</span>
+            }
+            @if(name.errors?.['maxlength']) {
+                <span>Password es debe tener al menos 25.</span>
+            }
+        }
+    </div>
+}
+
+@if(surname_1.errors){
+    <div style="color: red">
+        @if(surname_1.touched || surname_1.dirty){
+            @if(surname_1.errors?.['required']) {
+                <span>Apellido 1 es obligatorio</span>
+            }
+            @if(surname_1.errors?.['minlength']) {
+                <span>Aapellido 1 debe tener al menos 5.</span>
+            }
+            @if(surname_1.errors?.['maxlength']) {
+                <span>Apellido 1 debe tener al menos 25.</span>
+            }
+        }
+    </div>
+}
+
+@if(surname_2.errors){
+    <div style="color: red">
+        @if(surname_2.touched || surname_2.dirty){
+            @if(surname_2.errors?.['required']) {
+                <span>Apellido 2 es obligatorio</span>
+            }
+            @if(surname_2.errors?.['minlength']) {
+                <span>Aapellido 2 debe tener al menos 5.</span>
+            }
+            @if(surname_2.errors?.['maxlength']) {
+                <span>Apellido 2 debe tener al menos 25.</span>
+            }
+        }
+    </div>
+}
+
+@if(alias.errors){
+    <div style="color: red">
+        @if(alias.touched || alias.dirty){
+            @if(alias.errors?.['required']) {
+                <span>Email es obligatorio</span>
+            }           
+            @if(alias.errors?.['minlength']) {
+                <span>Alias debe tener al menos 5.</span>
+            }
+            @if(alias.errors?.['maxlength']) {
+                <span>Alias debe tener al menos 25.</span>
+            }
+        }
+    </div>
+}
+
+@if(birth_date.errors){
+    <div style="color: red">
+        @if(birth_date.touched || birth_date.dirty){
+            @if(birth_date.errors?.['required']) {
+                <span>Cumpleaños es obligatorio</span>
+            }            
+        }
+    </div>
+}
+    -->
