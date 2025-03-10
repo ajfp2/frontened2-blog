@@ -1,1 +1,42 @@
 <!-- TODO 3 -->
+<div class="filtro">
+    <h4>Buscador:</h4>
+    <label for="lista">Filtro:</label>
+    <select name="txtBuscar" [formControl]="listaFiltros">
+        <option value="title">Titulo</option>
+        <option value="description">Descripción</option>
+        <option value="publication_date">Fecha</option>
+    </select>
+    <br />
+    <label for="termino">Buscar:</label>
+    <input type="text" placeholder="Buscar ..." (keyup)="buscar()" [formControl]="search">
+</div>
+<hr>
+
+<div class="container">
+    
+    <div class="card" *ngFor="let post of posts">
+        <div class="card-header">
+            <!-- <img src="https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg" alt="rover" /> -->
+        </div>
+
+        <div class="card-body">
+            <span class="tag" [style]="{'background-color': cat.css_color}" *ngFor="let cat of post.categories">{{ cat.title }}</span>
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.description }}</p>
+            <p>Likes: {{ post.num_likes }}</p>
+            <p>Dislikes: {{ post.num_dislikes }}</p>
+            <div *ngIf="showButtons">
+                <button class="btn btn-teal" (click)="like(post.postId);">Like</button>
+                <button class="btn btn-pink" (click)="dislike(post.postId);">Dislike</button>
+            </div>
+            <div class="user">
+                <!-- <img src="https://yt3.ggpht.com/a/AGF-l7-0J1G0Ue0mcZMw-99kMeVuBmRxiPjyvIYONg=s900-c-k-c0xffffffff-no-rj-mo" alt="user" /> -->
+                <div class="user-info">
+                    <h5>Publicado por: {{ post.userAlias }}</h5>
+                    <small>Fecha: {{ post.publication_date | formatDate:3 }}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

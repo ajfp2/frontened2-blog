@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         private router: Router
     ) {
         // TODO 20
-        this.loginUser = new AuthDTO("", "", "", "");
+        this.loginUser = new AuthDTO("", "", "ajfp2@uoc.edu", "ajfp21234");
         this.email = new FormControl(this.loginUser.email, [Validators.required, Validators.email]);
         this.password = new FormControl(this.loginUser.password, [Validators.required, Validators.minLength(8), Validators.maxLength(16)]);
         this.loginForm = this.formBuilder.group({

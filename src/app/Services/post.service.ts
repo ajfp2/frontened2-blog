@@ -27,8 +27,9 @@ export class PostService {
     return this.http.get<PostDTO[]>(this.urlBlogUocApi).toPromise();
   }
 
-  getPostsByUserId() {
+  getPostsByUserId(userId: string): Promise<PostDTO[]> {
     // TODO 22
+    return this.http.get<PostDTO[]>(`http://localhost:3000/users/${this.controller}/${userId}`).toPromise();
   }
 
   createPost(post: PostDTO): Promise<PostDTO> {
